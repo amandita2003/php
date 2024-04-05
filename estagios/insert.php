@@ -18,27 +18,31 @@
 		$values[] = $_REQUEST[$meta->getColumnMeta($i)['name']];
 	}
 	if(isset($_REQUEST['cpf'])){
-		$curl = curl_init('http://localhost:8081/servico.php');
+		$curl = curl_init('http://localhost:8082/servico.php');
+		$obj = ['entrada' => $_REQUEST['cpf']];
+		$txt = json_encode($obj);
 		//cria a requisição
 		curl_setopt($curl, CURLOPT_POSTFIELDS, $txt);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-type:application/json']);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		$txt = curl_exec($curl);
 		$obj=json_decode($txt, true);
-		if($obj['status'!='cpf']){
+		if($obj['status']!='cpf'){
 			print 'cpf invalido';
 			exit;
 		}
 	}
 	if(isset($_REQUEST['cnpj'])){
-		$curl = curl_init('http://localhost:8081/servico.php');
+		$curl = curl_init('http://localhost:8082/servico.php');
+		$obj = ['entrada' => $_REQUEST['cnpj']];
+		$txt = json_encode($obj);
 		//cria a requisição
 		curl_setopt($curl, CURLOPT_POSTFIELDS, $txt);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-type:application/json']);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		$txt = curl_exec($curl);
 		$obj=json_decode($txt, true);
-		if($obj['status'!='cnpj']){
+		if($obj['status']!='cnpj'){
 			print 'cnpj invalido';
 			exit;
 		}

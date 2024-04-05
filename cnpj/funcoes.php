@@ -1,6 +1,6 @@
 <?php
 
-function validaCNPJ($entrada){
+function valida_cnpj($entrada){
 	if (strlen($entrada) != 14){
 		return false;
 	}
